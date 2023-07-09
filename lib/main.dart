@@ -25,33 +25,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        colorScheme: ColorScheme.fromSwatch()
-            .copyWith(primary: Colors.purple, secondary: Colors.amber),
-        errorColor: Colors.red,
-
-        // primarySwatch: Colors.purple,
-        // accentColor: Colors.amber,
-        // // errorColor: Colors.red,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
-              bodyText1: const TextStyle(
+              bodyLarge: const TextStyle(
                 fontFamily: 'OpenSans',
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
-              button: const TextStyle(color: Colors.white),
+              labelLarge: const TextStyle(color: Colors.white),
             ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           // centerTitle: true,
-          textTheme: ThemeData.light().textTheme.copyWith(
-                subtitle1: const TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(primary: Colors.purple, secondary: Colors.amber)
+            .copyWith(primary: Colors.purple, error: Colors.red),
       ),
       home: const MyHomePage(),
     );
@@ -85,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
@@ -96,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   @override
   dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -154,10 +147,10 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         children: <Widget>[
           Text(
             'Show Chart',
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           Switch.adaptive(
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).primaryColor,
             value: _showChart,
             onChanged: (val) {
               setState(() {

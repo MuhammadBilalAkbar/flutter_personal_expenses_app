@@ -21,6 +21,7 @@ class TransactionItem extends StatefulWidget {
 
 class _TransactionItemState extends State<TransactionItem> {
   late Color _bgColor;
+
   @override
   void initState() {
     const availableColors = [
@@ -55,7 +56,7 @@ class _TransactionItemState extends State<TransactionItem> {
         ),
         title: Text(
           widget.transaction.title,
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         subtitle: Text(
           DateFormat.yMMMd().format(widget.transaction.date),
@@ -63,8 +64,10 @@ class _TransactionItemState extends State<TransactionItem> {
         trailing: MediaQuery.of(context).size.width > 460
             ? TextButton.icon(
                 style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(
-                        TextStyle(color: Theme.of(context).errorColor))),
+                  textStyle: MaterialStateProperty.all(
+                    TextStyle(color: Theme.of(context).colorScheme.error),
+                  ),
+                ),
                 // textColor: Theme.of(context).errorColor,
                 onPressed: () => widget.deleteTx(widget.transaction.id),
                 icon: const Icon(Icons.delete),
@@ -72,7 +75,7 @@ class _TransactionItemState extends State<TransactionItem> {
               )
             : IconButton(
                 icon: const Icon(Icons.delete),
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).colorScheme.error,
                 onPressed: () => widget.deleteTx(widget.transaction.id),
               ),
       ),

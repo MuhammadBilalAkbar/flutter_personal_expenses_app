@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -8,14 +7,11 @@ class NewTransaction extends StatefulWidget {
   final Function addTx;
 
   NewTransaction(this.addTx, {Key? key}) : super(key: key) {
-    print('Constructor NewTransaction Widget');
+    debugPrint('Constructor NewTransaction Widget');
   }
 
   @override
-  _NewTransactionState createState() {
-    print('createState NewTransaction Widget');
-    return _NewTransactionState();
-  }
+  _NewTransactionState createState() => _NewTransactionState();
 }
 
 class _NewTransactionState extends State<NewTransaction> {
@@ -24,24 +20,24 @@ class _NewTransactionState extends State<NewTransaction> {
   DateTime _selectedDate = DateTime.now();
 
   _NewTransactionState() {
-    print('Constructor NewTransaction Widget');
+    debugPrint('Constructor NewTransaction Widget');
   }
 
   @override
   void initState() {
-    print('intitState()');
+    debugPrint('initState()');
     super.initState();
   }
 
   @override
   void didUpdateWidget(covariant NewTransaction oldWidget) {
-    print('didUpdateWidget()');
+    debugPrint('didUpdateWidget()');
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    print('dispose()');
+    debugPrint('dispose()');
     super.dispose();
   }
 
@@ -52,7 +48,7 @@ class _NewTransactionState extends State<NewTransaction> {
     final enteredTitle = _titleController.text;
     final enteredAmount = double.parse(_amountController.text);
 
-    if (enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null) {
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
       return;
     }
 
@@ -79,7 +75,7 @@ class _NewTransactionState extends State<NewTransaction> {
         _selectedDate = pickedDate;
       });
     });
-    print('...');
+    debugPrint('...');
   }
 
   @override
@@ -119,9 +115,7 @@ class _NewTransactionState extends State<NewTransaction> {
                   children: <Widget>[
                     Expanded(
                       child: Text(
-                        _selectedDate == null
-                            ? 'No Date Chosen!'
-                            : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
+                        'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
                       ),
                     ),
                     AdaptiveFlatButton('Choose Date', _presentDatePicker)
